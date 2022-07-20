@@ -1,0 +1,47 @@
+@import "src/variable.scss";
+
+.product_name {
+  margin: 0;
+  font-size: 20px;
+  color: $product-name-color;
+}
+.product_price {
+  color: $price-color;
+  margin: 0;
+}
+.card_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $card-content-bg;
+  padding: 10px;
+  min-height: 215px;
+}
+.bracelet_card {
+  transition: all 0.5s ease;
+  height: 540px;
+}
+.bracelet_card:hover {
+  transform: translateY(-10px);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.price_heart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.btn-addtocart {
+  background-color: $button-bg;
+  color: white;
+  padding: 5px 50px;
+  border: none;
+  border-radius: 5px;
+  transition: 0.3s all ease;
+}
+.btn-addtocart:hover {
+  background-color: white;
+  border: 1px solid $price-color;
+  color: $button-bg;
+}
+
+
