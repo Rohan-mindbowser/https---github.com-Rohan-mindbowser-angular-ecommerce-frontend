@@ -4,19 +4,15 @@ import { CommonModule } from '@angular/common';
 import { ProductsRoutingModule } from './products-routing.module';
 import { HomescreenComponent } from './homescreen/homescreen.component';
 import { BraceletComponent } from './bracelet/bracelet.component';
-import { EarringComponent } from './earring/earring.component';
-import { NecklaceComponent } from './necklace/necklace.component';
-import { RingsComponent } from './rings/rings.component';
 import { FeatureModule } from '../feature/feature.module';
+import { SingleproductComponent } from './singleproduct/singleproduct.component';
 
 
 @NgModule({
   declarations: [
     HomescreenComponent,
     BraceletComponent,
-    EarringComponent,
-    NecklaceComponent,
-    RingsComponent
+    SingleproductComponent
   ],
   imports: [
     CommonModule,

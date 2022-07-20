@@ -1,0 +1,30 @@
+@import "src/variable.scss";
+
+.product_price p {
+  color: $price-color;
+  font-weight: bolder;
+  font-size: 30px;
+}
+.product_addtocart button:first-child {
+  background-color: $button-bg;
+  color: white;
+  padding: 5px 50px;
+  border: none;
+  border-radius: 5px;
+  transition: 0.3s all ease;
+}
+
+.product_addtocart button:first-child:hover {
+  background-color: white;
+  border: 1px solid $price-color;
+  color: $button-bg;
+}
+.product_offer p {
+  color: rgb(168, 0, 171);
+}
+.fa-arrow-left {
+  color: $price-color;
+}
+.back_link span {
+  color: $price-color;
+}

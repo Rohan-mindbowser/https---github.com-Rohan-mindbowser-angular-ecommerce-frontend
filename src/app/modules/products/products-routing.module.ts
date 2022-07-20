@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BraceletComponent } from './bracelet/bracelet.component';
-import { EarringComponent } from './earring/earring.component';
-import { NecklaceComponent } from './necklace/necklace.component';
-import { RingsComponent } from './rings/rings.component';
+import { SingleproductComponent } from './singleproduct/singleproduct.component';
 
 const routes: Routes = [
   {
@@ -12,20 +10,10 @@ const routes: Routes = [
     component: BraceletComponent,
   },
   {
-    path: 'earring',
-    pathMatch: 'full',
-    component: EarringComponent,
-  },
-  {
-    path: 'necklace',
-    pathMatch: 'full',
-    component: NecklaceComponent,
-  },
-  {
-    path: 'rings',
-    pathMatch: 'full',
-    component: RingsComponent,
-  },
+    path:'singleproduct/:cat/:id',
+    pathMatch:'full',
+    component:SingleproductComponent,
+  }
 ];
 
 @NgModule({

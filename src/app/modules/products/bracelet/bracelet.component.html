@@ -1,5 +1,5 @@
 <div class="bracelet_card mb-3" *ngFor="let product of braceletProducts">
-  <a routerLink="/">
+  <a routerLink="/singleproduct/{{product.category}}/{{product._id}}">
     <img
       class="product_img"
       style="width: 100%; height: 60%; object-fit: cover"
