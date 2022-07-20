@@ -7,28 +7,41 @@ import { ProductsApiService } from 'src/app/services/product/products-api.servic
   styleUrls: ['./homescreen.component.scss'],
 })
 export class HomescreenComponent implements OnInit {
-  constructor(private _productsApi: ProductsApiService) {}
-
   allProducts!: [];
-  allBracelets!: [];
+  allBracelets!: any;
+  allNecklace!: any;
+  allRings!:any;
+  allEarrings!: any;
+
+
+  constructor(private _productsApi: ProductsApiService) {}
 
   ngOnInit(): void {
     this.getAllProducts();
-    this.filterBracelets();
   }
 
   getAllProducts() {
-    this._productsApi.getAllProducts().subscribe((products) => {
+    this._productsApi.getAllProducts().subscribe((products: any) => {
       this.allProducts = products;
-      console.log(products)
-    },
-    (error: any) => {
-      console.log('error :', error);
+      this.filterProducts();
     });
-    console.log(this.allProducts);
   }
 
-  filterBracelets() {
-    console.log(this.allProducts);
+  filterProducts() {
+    this.allBracelets = this.allProducts.filter((product:any)=>{
+      return product.category === 'bracelet';
+    })
+
+    this.allEarrings = this.allProducts.filter((product:any)=>{
+      return product.category === 'earring';
+    })
+
+    this.allNecklace = this.allProducts.filter((product:any)=>{
+      return product.category === 'necklace';
+    })
+
+    this.allRings = this.allProducts.filter((product:any)=>{
+      return product.category === 'ring';
+    })
   }
 }

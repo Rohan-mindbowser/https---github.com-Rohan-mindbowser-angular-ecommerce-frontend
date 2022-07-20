@@ -3,18 +3,19 @@
     <app-navbar></app-navbar>
   </div>
   <div class="container main">
-    <div class="row">
+    <h1 *ngIf="allProducts === undefined">Please Wait Products Loading</h1>
+    <div class="row" *ngIf="allProducts !== undefined">
       <div class="col-md-3 pt-3">
-        <app-bracelet></app-bracelet>
+        <app-bracelet [products]="allBracelets"></app-bracelet>
       </div>
       <div class="col-md-3 pt-3">
-        <app-earring></app-earring>
+        <app-earring [products]="allEarrings"></app-earring>
       </div>
       <div class="col-md-3 pt-3">
-        <app-necklace></app-necklace>
+        <app-necklace [products]="allNecklace"></app-necklace>
       </div>
       <div class="col-md-3 pt-3">
-        <app-rings></app-rings>
+        <app-rings [products]="allRings"></app-rings>
       </div>
     </div>
   </div>

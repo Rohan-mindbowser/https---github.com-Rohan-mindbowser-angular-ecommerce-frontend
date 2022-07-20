@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-bracelet',
@@ -9,7 +9,13 @@ export class BraceletComponent implements OnInit {
 
   constructor() { }
 
+  @Input() products!:[];
+
+  braceletProducts!:any
+
   ngOnInit(): void {
+    console.log("From child :",this.products);
+    this.braceletProducts = this.products
   }
 
 }

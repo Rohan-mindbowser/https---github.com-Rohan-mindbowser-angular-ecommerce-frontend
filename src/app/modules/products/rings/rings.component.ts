@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-rings',
@@ -8,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class RingsComponent implements OnInit {
 
   constructor() { }
+  @Input() products!:[];
+  ringProducts!:any
 
   ngOnInit(): void {
+    this.ringProducts = this.products;
   }
 
 }
