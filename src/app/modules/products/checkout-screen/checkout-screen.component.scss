@@ -1,0 +1,130 @@
+@import "src/variable.scss";
+
+@mixin space_between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.total_products {
+  display: flex;
+  justify-content: space-between;
+  //   flex-wrap: wrap;
+  // align-items: center;
+  padding: 10px;
+  height: 250px;
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 5px;
+}
+.product_image {
+  width: 100px;
+  height: 100px;
+}
+.left {
+  flex: 1;
+}
+.right {
+  flex: 2;
+  padding: 0 20px;
+}
+.product_name p {
+  font-weight: 300;
+}
+.product_id p {
+  font-size: 20px;
+  font-weight: 100;
+}
+.product_price_and_remove {
+  display: flex;
+  justify-content: space-between;
+}
+.product_price p {
+  color: $price-color;
+}
+.total_item_and_price span {
+  color: $price-color;
+}
+.order_summary_container {
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 5px;
+  padding: 10px;
+}
+.sub_total {
+  @include space_between();
+}
+.subtotal_price {
+  font-weight: bold;
+}
+.coupon_discount {
+  @include space_between();
+}
+.coupon_discount_apply button {
+  // color: white;
+  font-weight: 300;
+}
+.delivery_charges {
+  @include space_between();
+}
+.delivery_charges_value {
+  color: $price-color;
+}
+.total_charges {
+  @include space_between();
+}
+.total_price_value {
+  color: $price-color;
+  font-weight: bold;
+}
+.checkout_securely button {
+  width: 100%;
+  padding: 5px 0px;
+  bottom: none;
+  outline: none;
+  background-color: $price-color;
+  color: white;
+  border-radius: 5px;
+  transition: 0.3s all ease;
+}
+.checkout_securely button:hover {
+  border: 2px solid $button-bg;
+  color: $button-bg;
+  background-color: white;
+}
+.modal-title {
+  color: $price-color;
+  border-bottom: 2px solid $price-color;
+}
+// .modal-backdrop.show{
+//     z-index: -99999;
+// }
+// .modal-backdrop{
+//     z-index: -99999;
+//     display: none;
+// }
+.left_Product_details {
+  height: 700px;
+  overflow: scroll;
+}
+.coupon_container {
+  padding: 14px;
+  @include space_between();
+  border: 1px solid rgb(207, 207, 207);
+}
+.coupon_discount_apply p {
+  color: $price-color;
+  border-bottom: 1px solid $price-color;
+}
+.discount_value {
+  @include space_between();
+}
+.discount_applied {
+  color: $price-color;
+  font-weight: bold;
+}
+@media screen and (max-width: 568px) {
+  //   .left {
+  //     flex: 100%;
+  //   }
+  //   .right {
+  //     flex: 100%;
+  //   }
+}

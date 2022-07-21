@@ -11,6 +11,7 @@ import { AllBraceletProductsComponent } from './all-bracelet-products/all-bracel
 import { AllEarringProductsComponent } from './all-earring-products/all-earring-products.component';
 import { AllNecklaceProductsComponent } from './all-necklace-products/all-necklace-products.component';
 import { AllRingsProductsComponent } from './all-rings-products/all-rings-products.component';
+import { CheckoutScreenComponent } from './checkout-screen/checkout-screen.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { AllRingsProductsComponent } from './all-rings-products/all-rings-produc
     AllBraceletProductsComponent,
     AllEarringProductsComponent,
     AllNecklaceProductsComponent,
-    AllRingsProductsComponent
+    AllRingsProductsComponent,
+    CheckoutScreenComponent
   ],
   imports: [
     CommonModule,

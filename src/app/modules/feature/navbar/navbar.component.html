@@ -77,8 +77,8 @@
         class="ms-1"
         >Wishlist
         <span class="wishlistspan" *ngIf="wishListLength > 0"
-            >({{ wishListLength }})</span
-          >
+          >({{ wishListLength }})</span
+        >
       </span></i
     >
   </div>
@@ -222,7 +222,10 @@
           >
             Remove
           </button>
-          <button (click)="addToCartFromWishList(product, product._id)" class="custom-btn">
+          <button
+            (click)="addToCartFromWishList(product, product._id)"
+            class="custom-btn"
+          >
             Add To Cart
           </button>
         </div>

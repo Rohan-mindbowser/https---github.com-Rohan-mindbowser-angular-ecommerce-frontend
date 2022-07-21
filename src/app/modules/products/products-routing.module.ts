@@ -5,6 +5,7 @@ import { AllEarringProductsComponent } from './all-earring-products/all-earring-
 import { AllNecklaceProductsComponent } from './all-necklace-products/all-necklace-products.component';
 import { AllRingsProductsComponent } from './all-rings-products/all-rings-products.component';
 import { BraceletComponent } from './bracelet/bracelet.component';
+import { CheckoutScreenComponent } from './checkout-screen/checkout-screen.component';
 import { FilterProductComponent } from './filter-product/filter-product.component';
 import { SingleproductComponent } from './singleproduct/singleproduct.component';
 
@@ -43,7 +44,12 @@ const routes: Routes = [
     path:'allrings/:cat',
     pathMatch:'full',
     component:AllRingsProductsComponent,
-  }
+  },
+  {
+    path: 'checkout',
+    pathMatch: 'full',
+    component: CheckoutScreenComponent,
+  },
 ];
 
 @NgModule({

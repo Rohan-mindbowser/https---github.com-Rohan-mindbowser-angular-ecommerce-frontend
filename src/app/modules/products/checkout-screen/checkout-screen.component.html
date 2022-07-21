@@ -1,0 +1,223 @@
+<div class="container-fluid">
+  <div class="navbar_container mb-5">
+    <app-navbar></app-navbar>
+  </div>
+  <div class="container pt-4">
+    <div class="row">
+      <div class="col-md-7 left_Product_details">
+        <div class="total_item_and_price mb-2">
+          <p>
+            Total ({{ totalProduct }}) :
+            <span>{{ subTotal | currency: "INR" }}</span>
+          </p>
+        </div>
+        <div
+          class="total_products mb-3"
+          *ngFor="let product of allCartProducts; index as i"
+        >
+          <div class="left">
+            <img
+              style="width: 100%; object-fit: cover; height: 100%"
+              src="{{ product.image }}"
+              alt=""
+            />
+          </div>
+          <div class="right">
+            <div class="product_name">
+              <p style="margin: 0px">{{ product.product_name }}</p>
+            </div>
+            <div class="product_id">
+              <p>{{ product._id }}</p>
+            </div>
+            <div class="product_quantity mb-3">
+              <p>Quantity : 1</p>
+            </div>
+            <div class="product_price_and_remove">
+              <div class="product_price">
+                <p>{{ product.original_price | currency: "INR" }}</p>
+              </div>
+              <div class="product_remove">
+                <button
+                  class="custom-btn"
+                  (click)="removeProduct(product['_id'])"
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="p mb-3">Order Summary</div>
+        <div class="order_summary_container">
+          <div class="sub_total mb-3">
+            <div class="subtotal_text">Subtotal</div>
+            <div class="subtotal_price">{{ subTotal | currency: "INR" }}</div>
+          </div>
+          <div class="coupon_discount mb-3">
+            <div class="coupon_discount_title">Coupon Discount</div>
+            <div class="coupon_discount_apply">
+              <Button
+                *ngIf="isCouponApplied"
+                class="custom-btn"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal1"
+                >Apply Coupon</Button
+              >
+              <p *ngIf="!isCouponApplied" style="margin: 0">
+                {{ couponCode }} Applied
+              </p>
+            </div>
+          </div>
+          <div class="delivery_charges mb-3">
+            <div class="delivery_charges_title">Delivery Charge (Standard)</div>
+            <div
+              *ngIf="totalPrice > 2000 || totalPrice == 0"
+              class="delivery_charges_value"
+            >
+              FREE
+            </div>
+            <div
+              *ngIf="totalPrice < 2000 && totalPrice != 0"
+              class="delivery_charges_value"
+            >
+              {{ 100 | currency: "INR" }}
+            </div>
+          </div>
+
+          <div
+            *ngIf="discountValue > 0 && totalPrice > 100"
+            class="discount_value mb-3"
+          >
+            <div class="discount_title">You Saved</div>
+            <div class="discount_applied">
+              {{ discountValue }}
+            </div>
+          </div>
+
+          <div class="total_charges mb-3">
+            <div class="total_price_title">TOTAL COST</div>
+            <div class="total_price_value">
+              {{ totalPrice | currency: "INR" }}
+            </div>
+          </div>
+          <div class="checkout_securely">
+            <button>
+              <i class="fa-solid fa-lock me-2"></i>Checkout Securely
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Coupon Modal -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal1"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Apply Coupons</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="coupon_container mb-3">
+          <div class="coupon_info">
+            <h5>EAR00010</h5>
+            <p style="margin: 0">10% discount coupon</p>
+            <p style="font-size: 18px">
+              Get Flat 10% Off (This coupon is valid only if you have 1 earring
+              in your cart)
+            </p>
+          </div>
+          <div class="coupon_apply_button">
+            <button
+              (click)="applyCoupon(10)"
+              class="custom-btn"
+              data-bs-dismiss="modal"
+            >
+              Apply
+            </button>
+          </div>
+        </div>
+        <div class="coupon_container mb-3">
+          <div class="coupon_info">
+            <h5>NEC00020</h5>
+            <p style="margin: 0">20% discount coupon</p>
+            <p style="font-size: 18px">
+              Get Flat 20% Off (This coupon is valid only if you have 2
+              necklace's in your cart)
+            </p>
+          </div>
+          <div class="coupon_apply_button">
+            <button
+              (click)="applyCoupon(20)"
+              class="custom-btn"
+              data-bs-dismiss="modal"
+            >
+              Apply
+            </button>
+          </div>
+        </div>
+        <div class="coupon_container mb-3">
+          <div class="coupon_info">
+            <h5>RIN00015</h5>
+            <p style="margin: 0">15% discount coupon</p>
+            <p style="font-size: 18px">
+              Get Flat 15% Off (This coupon is valid only if you have 1 ring in
+              your cart)
+            </p>
+          </div>
+          <div class="coupon_apply_button">
+            <button
+              (click)="applyCoupon(15)"
+              class="custom-btn"
+              data-bs-dismiss="modal"
+            >
+              Apply
+            </button>
+          </div>
+        </div>
+        <div class="coupon_container mb-3">
+          <div class="coupon_info">
+            <h5>BRC00025</h5>
+            <p style="margin: 0">25% discount coupon</p>
+            <p style="font-size: 18px">
+              Get Flat 25% Off (This coupon is valid only if you have 2
+              bracelets in your cart)
+            </p>
+          </div>
+          <div class="coupon_apply_button">
+            <button
+              (click)="applyCoupon(25)"
+              class="custom-btn"
+              data-bs-dismiss="modal"
+            >
+              Apply
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+    </div>
+  </div>
+</div>
