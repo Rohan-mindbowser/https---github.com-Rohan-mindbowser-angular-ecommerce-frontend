@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AddToCartService } from 'src/app/services/add-to-cart/add-to-cart.service';
 import { AddToWishlistService } from 'src/app/services/add-to-wishlist/add-to-wishlist.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,8 @@ import { AddToWishlistService } from 'src/app/services/add-to-wishlist/add-to-wi
 export class NavbarComponent implements OnInit {
   constructor(
     private _addToCartService: AddToCartService,
-    private _addToWishListService: AddToWishlistService
+    private _addToWishListService: AddToWishlistService,
+    private toast: NgToastService
   ) {}
 
   cartProductList!: any;
@@ -21,6 +23,10 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this._addToCartService.getProducts().subscribe((res: any) => {
       this.cartLength = res.length;
+    });
+
+    this._addToWishListService.getWishList().subscribe((res: any) => {
+      this.wishListLength = res.length;
     });
   }
 
@@ -38,6 +44,11 @@ export class NavbarComponent implements OnInit {
   removeProduct(productId: any) {
     this._addToCartService.removeProduct(productId);
     this._addToCartService.getCartValue().subscribe((res: any) => {});
+    this.toast.success({
+      detail: 'SUCCESS',
+      summary: 'Product Removed from cart',
+      duration: 5000,
+    });
   }
 
   viewWishList() {
@@ -48,9 +59,19 @@ export class NavbarComponent implements OnInit {
 
   removeWishListProduct(productId: any) {
     this._addToWishListService.removeWishListProduct(productId);
+    this.toast.success({
+      detail: 'SUCCESS',
+      summary: 'Product Removed from wishlist',
+      duration: 5000,
+    });
   }
-  addToCartFromWishList(product: any, productId: any){
+  addToCartFromWishList(product: any, productId: any) {
     this._addToCartService.setProduct(product);
     this._addToWishListService.removeWishListProduct(productId);
+    this.toast.success({
+      detail: 'SUCCESS',
+      summary: 'Product Moved to cart',
+      duration: 5000,
+    });
   }
 }

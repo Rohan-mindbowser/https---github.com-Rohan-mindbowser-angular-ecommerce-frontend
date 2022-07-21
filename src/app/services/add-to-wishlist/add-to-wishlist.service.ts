@@ -70,6 +70,6 @@ export class AddToWishlistService {
     // });
     this._userSession.setWishListProducts(JSON.stringify(this.wishList))
 
-    alert("Product removed");
+    // alert("Product removed");
   }
 }

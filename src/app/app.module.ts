@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { FeatureModule } from './modules/feature/feature.module';
 import { ProductsModule } from './modules/products/products.module';
 import { HttpClientModule } from '@angular/common/http';
-
+import { NgToastModule } from 'ng-angular-popup'
 @NgModule({
   declarations: [
     AppComponent
@@ -16,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FeatureModule,
     ProductsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

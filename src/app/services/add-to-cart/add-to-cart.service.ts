@@ -68,10 +68,6 @@ export class AddToCartService {
     }
     this.cartItemList.push(product);
     this.cartProductList.next(this.cartItemList);
-    // console.log(this.cartProductList.value)
-    // localStorage.setItem('cartData', JSON.stringify(this.cartItemList));
-    // localStorage.removeItem('cartData');
-
     this._userSession.setProductsToLocalStorage(
       JSON.stringify(this.cartItemList)
     );
@@ -96,11 +92,5 @@ export class AddToCartService {
     this._userSession.setProductsToLocalStorage(
       JSON.stringify(this.cartItemList)
     );
-    // this.toast.success({
-    //   detail: 'SUCCESS',
-    //   summary: 'Product Removed',
-    //   duration: 5000,
-    // });
-    alert('Product Removed');
   }
 }
