@@ -45,7 +45,7 @@ export class AddToCartService {
       // console.log('from getcartvalue :', item.original_price);
       value += item.original_price;
     });
-    if (value <= 2000) {
+    if (value <= 2000 && value !== 0) {
       value += 100;
     }
     this.totalCartValue.next(value);
