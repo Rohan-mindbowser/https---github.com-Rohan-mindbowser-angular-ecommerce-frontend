@@ -11,15 +11,14 @@ export class AddToCartService {
   cartItemList: any = [];
   cartProductList = new BehaviorSubject<any>([]);
   totalCartValue = new BehaviorSubject<any>(0);
-
   getLocalData!: any;
   finalList!: any;
   getProductItems: any = [];
   editedCartList: any = [];
 
+  //Get all cart products
   getProducts() {
     let previousList = this._userSession.getProductFromLocalStorage();
-
     if (
       previousList !== undefined &&
       previousList !== null &&
@@ -28,16 +27,13 @@ export class AddToCartService {
       this.cartItemList = JSON.parse(previousList);
     }
     this.cartProductList.next(this.cartItemList);
-    this.cartProductList.value.forEach((item: any) => {
-      console.log(item.original_price);
-    });
     return this.cartProductList.asObservable();
   }
 
+  //Get total cart value
   getCartValue() {
     let value = 0;
     let previousList = this._userSession.getProductFromLocalStorage();
-
     if (
       previousList !== undefined &&
       previousList !== null &&
@@ -56,9 +52,9 @@ export class AddToCartService {
     return this.totalCartValue.asObservable();
   }
 
+  //Add product in cart
   setProduct(product: any) {
     let previousList = this._userSession.getProductFromLocalStorage();
-
     if (
       previousList !== undefined &&
       previousList !== null &&
@@ -73,6 +69,7 @@ export class AddToCartService {
     );
   }
 
+  //Remove product from cart
   removeProduct(productId: any) {
     let previousList = this._userSession.getProductFromLocalStorage();
     if (

@@ -24,7 +24,6 @@ export class NavbarComponent implements OnInit {
     this._addToCartService.getProducts().subscribe((res: any) => {
       this.cartLength = res.length;
     });
-
     this._addToWishListService.getWishList().subscribe((res: any) => {
       this.wishListLength = res.length;
     });
@@ -65,6 +64,7 @@ export class NavbarComponent implements OnInit {
       duration: 5000,
     });
   }
+  
   addToCartFromWishList(product: any, productId: any) {
     this._addToCartService.setProduct(product);
     this._addToWishListService.removeWishListProduct(productId);
