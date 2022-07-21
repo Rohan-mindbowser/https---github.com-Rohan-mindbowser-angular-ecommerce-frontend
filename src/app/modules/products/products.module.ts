@@ -6,13 +6,23 @@ import { HomescreenComponent } from './homescreen/homescreen.component';
 import { BraceletComponent } from './bracelet/bracelet.component';
 import { FeatureModule } from '../feature/feature.module';
 import { SingleproductComponent } from './singleproduct/singleproduct.component';
+import { FilterProductComponent } from './filter-product/filter-product.component';
+import { AllBraceletProductsComponent } from './all-bracelet-products/all-bracelet-products.component';
+import { AllEarringProductsComponent } from './all-earring-products/all-earring-products.component';
+import { AllNecklaceProductsComponent } from './all-necklace-products/all-necklace-products.component';
+import { AllRingsProductsComponent } from './all-rings-products/all-rings-products.component';
 
 
 @NgModule({
   declarations: [
     HomescreenComponent,
     BraceletComponent,
-    SingleproductComponent
+    SingleproductComponent,
+    FilterProductComponent,
+    AllBraceletProductsComponent,
+    AllEarringProductsComponent,
+    AllNecklaceProductsComponent,
+    AllRingsProductsComponent
   ],
   imports: [
     CommonModule,
