@@ -5,21 +5,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FeatureModule } from './modules/feature/feature.module';
 import { ProductsModule } from './modules/products/products.module';
-import { HttpClientModule } from '@angular/common/http';
-import { NgToastModule } from 'ng-angular-popup'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgToastModule } from 'ng-angular-popup';
+import { InterceptorInterceptor } from './services/interceptor.interceptor';
+
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FeatureModule,
     ProductsModule,
     HttpClientModule,
-    NgToastModule
+    NgToastModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
