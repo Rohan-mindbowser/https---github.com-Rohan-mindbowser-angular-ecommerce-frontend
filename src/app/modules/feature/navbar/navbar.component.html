@@ -57,13 +57,17 @@
       data-bs-target="#exampleModal"
       style="color: white; cursor: pointer"
       class="me-4 fa-solid fa-bag-shopping"
+      (click)="viewCartProduct()"
       ><span
         style="font-size: 16px; text-align: center; letter-spacing: 2px"
         class="ms-1"
-        >Cart
+        >Cart<span *ngIf="cartLength > 0" class="cart-count"
+          >({{ cartLength }})</span
+        >
       </span></i
     >
     ><i
+      (click)="viewWishList()"
       data-bs-toggle="offcanvas"
       data-bs-target="#offcanvasRight"
       style="color: white; cursor: pointer"
@@ -79,3 +83,150 @@
     >
   </div>
 </nav>
+
+<!-- Add To Cart Modal  -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Your Cart ({{ cartLength }})
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="cartLength == 0" class="cartlist_empty">
+          <h3>Cart list is empty</h3>
+        </div>
+
+        <div
+          *ngFor="let product of cartProductList; index as i"
+          class="bracelet_card mb-3"
+        >
+          <div class="productCartModal">
+            <div class="left">
+              <img
+                style="height: 80%; width: 80%; object-fit: cover"
+                src="{{ product.image }}"
+                alt=""
+              />
+            </div>
+            <div class="right">
+              <div class="product_info">
+                <p class="product_name">{{ product["product_name"] }}</p>
+                <div class="product_id mb-2">
+                  <p>{{ product["_id"] }}</p>
+                </div>
+                <div class="product_quantity">
+                  <p>Quantity : 1</p>
+                </div>
+                <div class="product_price">
+                  <p>{{ product["original_price"] | currency: "INR" }}</p>
+                </div>
+                <div class="remove_btn">
+                  <button
+                    class="custom-btn"
+                    (click)="removeProduct(product['_id'])"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button> -->
+        <a routerLink="/checkout" data-bs-dismiss="modal"
+          ><button
+            *ngIf="cartLength > 0"
+            type="button"
+            class="btn btn-primary btn-checkout"
+          >
+            Check Out
+          </button></a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WishList  -->
+
+<button
+  class="btn btn-primary"
+  type="button"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#offcanvasRight"
+  aria-controls="offcanvasRight"
+>
+  Toggle right offcanvas
+</button>
+
+<div
+  class="offcanvas offcanvas-end offcanvas-lg"
+  tabindex="-1"
+  id="offcanvasRight"
+  aria-labelledby="offcanvasRightLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">Wish List</h5>
+    <!-- <a  routerLink="/"><button data-bs-dismiss="offcanvas">Home</button></a> -->
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <div *ngIf="wishListLength == 0" class="wishlist_empty">
+      <h1>Wish list is empty</h1>
+    </div>
+    <div class="wishlistcontainer" *ngFor="let product of wishList; index as i">
+      <div class="product_image">
+        <img src="{{ product.image }}" alt="" />
+      </div>
+      <div class="product_info">
+        <p class="product_name">
+          {{ product.product_name }}
+        </p>
+        <div class="product_id mb-2">
+          <p>{{ product._id }}</p>
+        </div>
+        <div class="product_quantity">
+          <p>Quantity : 1</p>
+        </div>
+        <div class="product_price">
+          <p>{{ product.original_price | currency: "INR" }}</p>
+        </div>
+        <div class="remove_btn">
+          <button
+            (click)="removeWishListProduct(product._id)"
+            class="me-3 custom-btn"
+          >
+            Remove
+          </button>
+          <button (click)="addToCartFromWishList(product, product._id)" class="custom-btn">
+            Add To Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
