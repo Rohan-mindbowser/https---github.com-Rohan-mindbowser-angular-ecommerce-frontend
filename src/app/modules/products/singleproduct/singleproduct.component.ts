@@ -21,6 +21,7 @@ export class SingleproductComponent implements OnInit {
   ngOnInit(): void {
     this.productId = this.activeRouter.snapshot.params['id'];
 
+    //Getting single product object
     this._productApi.singleProduct(this.productId).subscribe((product) => {
       this.singleProduct = product[0];
     });

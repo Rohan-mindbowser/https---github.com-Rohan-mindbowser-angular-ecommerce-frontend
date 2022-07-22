@@ -24,7 +24,7 @@ import { CheckoutScreenComponent } from './checkout-screen/checkout-screen.compo
     AllEarringProductsComponent,
     AllNecklaceProductsComponent,
     AllRingsProductsComponent,
-    CheckoutScreenComponent
+    CheckoutScreenComponent,
   ],
   imports: [
     CommonModule,

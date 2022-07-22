@@ -8,9 +8,11 @@ import { ProductsModule } from './modules/products/products.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgToastModule } from 'ng-angular-popup';
 import { InterceptorInterceptor } from './services/interceptor.interceptor';
+import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-viewer.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ExamplePdfViewerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -18,6 +20,7 @@ import { InterceptorInterceptor } from './services/interceptor.interceptor';
     ProductsModule,
     HttpClientModule,
     NgToastModule,
+    NgxExtendedPdfViewerModule,
   ],
   providers: [
     {

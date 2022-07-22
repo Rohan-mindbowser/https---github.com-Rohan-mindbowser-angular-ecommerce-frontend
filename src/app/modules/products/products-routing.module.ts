@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ExamplePdfViewerComponent } from 'src/app/example-pdf-viewer/example-pdf-viewer.component';
 import { AllBraceletProductsComponent } from './all-bracelet-products/all-bracelet-products.component';
 import { AllEarringProductsComponent } from './all-earring-products/all-earring-products.component';
 import { AllNecklaceProductsComponent } from './all-necklace-products/all-necklace-products.component';
@@ -49,6 +50,11 @@ const routes: Routes = [
     path: 'checkout',
     pathMatch: 'full',
     component: CheckoutScreenComponent,
+  },
+  {
+    path: 'pdf-viewer',
+    pathMatch: 'full',
+    component: ExamplePdfViewerComponent,
   },
 ];
 
