@@ -23,6 +23,7 @@ export class SingleproductComponent implements OnInit {
 
     this._productApi.singleProduct(this.productId).subscribe((product) => {
       this.singleProduct = product[0];
+      console.log();
     });
   }
 }
