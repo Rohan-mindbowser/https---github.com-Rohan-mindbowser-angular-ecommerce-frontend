@@ -27,7 +27,7 @@ export class AddToCartService {
       this.cartItemList = JSON.parse(previousList);
     }
     this.cartProductList.next(this.cartItemList);
-    return this.cartProductList.asObservable();
+    return this.cartProductList;
   }
 
   //Get total cart value
@@ -49,7 +49,7 @@ export class AddToCartService {
       value += 100;
     }
     this.totalCartValue.next(value);
-    return this.totalCartValue.asObservable();
+    return this.totalCartValue;
   }
 
   //Add product in cart
