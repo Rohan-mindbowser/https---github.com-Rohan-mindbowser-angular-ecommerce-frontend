@@ -18,6 +18,7 @@ export class InterceptorInterceptor implements HttpInterceptor {
       return err.message;
     }
     if (err.status === 502) {
+      console.log("502 error")
       return err.message;
     }
     return throwError(err);

@@ -13,6 +13,7 @@ export class CheckoutScreenComponent implements OnInit {
     private toast: NgToastService
   ) {}
 
+  applyCouponObjectReturn = {};
   allCartProducts!: any;
   totalProduct!: any;
   totalPrice: number = 0;
@@ -68,65 +69,41 @@ export class CheckoutScreenComponent implements OnInit {
       }
     });
 
-    if (value === 10 && this.earringsCount >= 1) {
-      this.discountValue = (value / 100) * this.totalPrice;
-      this.totalPrice = this.totalPrice - this.discountValue;
-      this.isCouponApplied = false;
-      this.couponCode = 'EAR00010';
-
-      this.toast.success({
-        detail: 'SUCCESS',
-        summary: 'Coupon Applied',
-        duration: 5000,
-      });
-    } else if (value === 20 && this.necklaceCount >= 2) {
-      this.discountValue = (value / 100) * this.totalPrice;
-      this.totalPrice = this.totalPrice - this.discountValue;
-      this.isCouponApplied = false;
-      this.couponCode = 'NEC00020';
-
-      this.toast.success({
-        detail: 'SUCCESS',
-        summary: 'Coupon Applied',
-        duration: 5000,
-      });
-    } else if (value === 15 && this.ringsCount >= 1) {
-      this.discountValue = (value / 100) * this.totalPrice;
-      this.totalPrice = this.totalPrice - this.discountValue;
-      this.isCouponApplied = false;
-      this.couponCode = 'RIN00015';
-
-      this.toast.success({
-        detail: 'SUCCESS',
-        summary: 'Coupon Applied',
-        duration: 5000,
-      });
-    } else if (value === 25 && this.braceletCount >= 2) {
-      this.discountValue = (value / 100) * this.totalPrice;
-      this.totalPrice = this.totalPrice - this.discountValue;
-      this.isCouponApplied = false;
-      this.couponCode = 'BRC00025';
-
-      this.toast.success({
-        detail: 'SUCCESS',
-        summary: 'Coupon Applied',
-        duration: 5000,
-      });
-    } else {
-      this.toast.warning({
-        detail: 'Invalid Coupon',
-        summary: 'Please check coupon conditions',
-        duration: 5000,
-      });
-    }
+    let applyCouponObject = {
+      braceletCount: this.braceletCount,
+      earringCount: this.earringsCount,
+      necklaceCount: this.necklaceCount,
+      ringsCount: this.ringsCount,
+      percentValue: value,
+      totalPrice: this.totalPrice,
+    };
 
     if (typeof Worker !== 'undefined') {
       // Create a new
-      const worker = new Worker(new URL('/src/app/services/apply-coupon.worker', import.meta.url));
+      const worker = new Worker(
+        new URL('/src/app/services/apply-coupon.worker', import.meta.url)
+      );
       worker.onmessage = ({ data }) => {
-        console.log(`page got message: ${data}`);
+        if (data) {
+          (this.totalPrice = data.totalPrice),
+            (this.discountValue = data.discountValue),
+            (this.applyCouponObjectReturn = data);
+          this.couponCode = data.couponCode;
+          this.isCouponApplied = data.isCouponApplied;
+          this.toast.success({
+            detail: 'SUCCESS',
+            summary: `${this.couponCode} Applied`,
+            duration: 5000,
+          });
+        } else {
+          this.toast.warning({
+            detail: 'Invalid Coupon',
+            summary: 'Please check coupon conditions',
+            duration: 5000,
+          });
+        }
       };
-      worker.postMessage('hello');
+      worker.postMessage(applyCouponObject);
     } else {
       // Web workers are not supported in this environment.
       // You should add a fallback so that your program still executes correctly.

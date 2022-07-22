@@ -120,11 +120,21 @@
   color: $price-color;
   font-weight: bold;
 }
-@media screen and (max-width: 568px) {
-  //   .left {
-  //     flex: 100%;
-  //   }
-  //   .right {
-  //     flex: 100%;
-  //   }
+.left img{
+  width: 100%;
+}
+@media screen and (max-width: 820px) {
+  .total_products {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+  }
+  .left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .left img{
+    width: 50%;
+  }
 }
